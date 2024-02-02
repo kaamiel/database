@@ -1,36 +1,98 @@
 # Database
 Simple, single-threaded, in-memory database
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/database`. To experiment with that code, run `bin/console` for an interactive prompt.
-
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Developed and tested on Ruby version 3.2.
 
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle install
 
 ## Usage
 
-TODO: Write usage instructions here
+### Database command interpreter
 
-## Development
+    $ exe/database
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Example session:
+```
+$ exe/database
+> set a 10
+> get a
+10
+> delete a
+> get a
+NULL
+> set a 10
+> set b 10
+> count 10
+2
+> commit
+NO TRANSACTION
+> 
+$
+```
+exit with EOF (Ctrl + D)
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### IRB
 
-## Contributing
+    $ bin/console
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/database.
+### Spec
 
-## License
+    $ bundle exec rake spec
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Example output:
+```
+$ bundle exec rake spec
+/usr/share/rvm/rubies/ruby-3.2.3/bin/ruby -I/usr/share/rvm/gems/ruby-3.2.3/gems/rspec-core-3.12.2/lib:/usr/share/rvm/gems/ruby-3.2.3/gems/rspec-support-3.12.1/lib /usr/share/rvm/gems/ruby-3.2.3/gems/rspec-core-3.12.2/exe/rspec --pattern spec/\*\*\{,/\*/\*\*\}/\*_spec.rb
+
+Database::CommandInterpreter
+  example
+    reads commands and outputs results
+  example 1
+    reads commands and outputs results
+  example 2
+    reads commands and outputs results
+  example 3
+    reads commands and outputs results
+  example 4
+    reads commands and outputs results
+
+Database::Database
+  set
+    assigns a value to a variable
+    increments count of the assigned value
+    decrements count of the previous variable value
+  get
+    returns nil if the variable has not been assigned
+    returns value assigned to a variable
+  delete
+    clears the variable
+    decrements count of the previous variable value
+  count
+    returns count of the assigned value
+  commit
+    returns false if there are no transactions in progress
+  rollback
+    returns false if there are no transactions in progress
+
+Database
+  has a version number
+
+Finished in 0.00968 seconds (files took 0.05134 seconds to load)
+16 examples, 0 failures
+```
+
+### RuboCop
+
+    $ bundle exec rake rubocop
+
+Output:
+```
+$ bundle exec rake rubocop
+Running RuboCop...
+Inspecting 14 files
+..............
+
+14 files inspected, no offenses detected
+```
