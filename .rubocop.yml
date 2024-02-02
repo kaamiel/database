@@ -11,6 +11,15 @@ AllCops:
 Layout/LineLength:
   Max: 120
 
+Layout/TrailingWhitespace:
+  AllowInHeredoc: true
+
+RSpec/ExampleLength:
+  Max: 6
+
+RSpec/MultipleExpectations:
+  Max: 3
+
 Style/Semicolon:
   AllowAsExpressionSeparator: true
 

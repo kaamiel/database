@@ -5,7 +5,7 @@ require 'English'
 module Database
   class CommandInterpreter
     def run
-      while (print '> '; gets)
+      while (print '> '; $stdin.gets)
         command = $LAST_READ_LINE.strip
         next if command.empty?
 
