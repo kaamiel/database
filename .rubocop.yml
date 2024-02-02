@@ -1,0 +1,20 @@
+
+require:
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 3.2.3
+  NewCops: enable
+
+Layout/LineLength:
+  Max: 120
+
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
+# Disabled
+
+Style/Documentation:
+  Enabled: false
